@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Centered Div Template</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="javascript/main.js" defer></script>
+</head>
+<body>
+  <div class="center-box">
+    <form class="input-row" id="entry-form">
+        <label>
+            Date:
+            <input type="date" id="date" />
+        </label>
+
+  
+        <label>
+          Amount $
+          <input type="number" step="0.01" id="amount" />
+        </label>
+  
+        <label>
+            Catagory
+            <select id="catagory">
+                <option value="food">Food</option>
+                <option value="transport">Transport</option>
+                <option value="other">Other</option>
+              </select>
+        </label>
+        <label>
+            Note:
+            <input type="text" placeholder="Details..." id="note" />
+        </label>
+
+        <button type="submit">Submit</button>
+      </form>
+  </div>
+</body>
+</html>
