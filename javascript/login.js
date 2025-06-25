@@ -24,7 +24,7 @@ document.getElementById("signin-form").addEventListener("submit", function (e) {
     .then(data => {
       if (data.status === "success") {
         
-        // Optionally redirect or update UI here
+        // save user info for use at next page
       sessionStorage.setItem("user_id", data.user_id);
       sessionStorage.setItem("username", data.username);
   

@@ -20,11 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
 
     // Validate that a 'type' field exists to distinguish request kind
-    if (!isset($data['type'])) {
-        http_response_code(400);
-        echo json_encode(['status' => 'error', 'error' => 'Missing request type']);
-        exit;
-    }
+    // if (!isset($data['type'])) {
+    //     http_response_code(400);
+    //     echo json_encode(['status' => 'error', 'error' => 'Missing request type']);
+    //     exit;
+    // }
 
     // Handle user signup
     if ($data['type'] === 'signup') {
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Handle new entry
     elseif ($data['type'] === 'entry') {
-        if (!isset($data['user_id'], $data['date'], $data['amount'], $data['category'])) {
+        if (!isset($data['userId'], $data['date'], $data['amount'], $data['category'])) {
             http_response_code(400);
             echo json_encode(['status' => 'error', 'error' => 'Missing required entry fields']);
             exit;
@@ -78,12 +78,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Generate a new entry_id for this user
         $stmt = $db->prepare('SELECT IFNULL(MAX(entry_id), 0) + 1 AS new_id FROM entries WHERE user_id = :user_id');
-        $stmt->bindValue(':user_id', $data['user_id'], SQLITE3_INTEGER);
+        $stmt->bindValue(':user_id', $data['userId'], SQLITE3_INTEGER);
         $entry_id = $stmt->execute()->fetchArray(SQLITE3_ASSOC)['new_id'];
 
         // Insert entry
         $stmt = $db->prepare('INSERT INTO entries (user_id, entry_id, amount, category, note) VALUES (:user_id, :entry_id, :amount, :category, :note)');
-        $stmt->bindValue(':user_id', $data['user_id'], SQLITE3_INTEGER);
+        $stmt->bindValue(':user_id', $data['userId'], SQLITE3_INTEGER);
         $stmt->bindValue(':entry_id', $entry_id, SQLITE3_INTEGER);
         $stmt->bindValue(':amount', $amount, SQLITE3_FLOAT);
         $stmt->bindValue(':category', $data['category'], SQLITE3_TEXT);

@@ -1,11 +1,21 @@
-
-
 document.addEventListener("DOMContentLoaded", () => {
+
+    //get this users detail and display in alert for checking
+
+    const userId = sessionStorage.getItem("user_id");
+    const username = sessionStorage.getItem("username");
+
+    if (userId ) {
+        alert(`Welcome! Your user ID is ${userId} (${username})`);
+    } else {
+        alert("No user info found — please log in.");
+    }
     const form = document.getElementById("entry-form");
+
   
     form.addEventListener("submit", function (e) {
       e.preventDefault(); // Prevent default form submission
-  
+
       const date = document.getElementById("date").value;
       const amountStr = document.getElementById("amount").value;
       const category = document.getElementById("catagory").value;
@@ -37,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ date, amount, category, note }),
+        body: JSON.stringify({type: "entry", date, amount, category, note, userId }),
       })
         .then((res) => res.json())
         .then((data) => {
