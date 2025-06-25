@@ -6,7 +6,16 @@ $users = $db->query("SELECT * FROM users");
 
 // Fetch all entries
 $entries = $db->query("SELECT * FROM entries");
+
+
+// echo "<h3>Entries Table Schema:</h3><pre>";
+// $result = $db->query("PRAGMA table_info(entries)");
+// while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+//     echo "{$row['name']} ({$row['type']})\n";
+// }
+// echo "</pre>";
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,6 +57,7 @@ $entries = $db->query("SELECT * FROM entries");
     <tr>
         <th>user_id</th>
         <th>entry_id</th>
+        <th>type</th>
         <th>amount</th>
         <th>category</th>
         <th>note</th>
@@ -56,9 +66,11 @@ $entries = $db->query("SELECT * FROM entries");
         <tr>
             <td><?= htmlspecialchars($row['user_id']) ?></td>
             <td><?= htmlspecialchars($row['entry_id']) ?></td>
+            <td><?= htmlspecialchars($row['type']) ?></td> 
             <td><?= htmlspecialchars($row['amount']) ?></td>
             <td><?= htmlspecialchars($row['category']) ?></td>
             <td><?= htmlspecialchars($row['note']) ?></td>
+
         </tr>
     <?php endwhile; ?>
 </table>

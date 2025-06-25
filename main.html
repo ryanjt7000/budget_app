@@ -9,21 +9,25 @@
 </head>
 <body>
   <div class="center-box">
-    <form class="input-row" id="entry-form">
+  <div class="trapezoid-holder">
+    <div class="trapezoid" id="trapezoid-expense">Expenses</div>
+    <div class="trapezoid" id="trapezoid-income">Income</div>
+  </div>
+  <div id="center-box-expense">
+    <form class="input-row" id="entry-form-expense">
         <label>
             Date:
-            <input type="date" id="date" />
+            <input type="date" id="date-expense" />
         </label>
 
-  
         <label>
           Amount $
-          <input type="number" step="0.01" id="amount" />
+          <input type="number" step="0.01" id="amount-expense" />
         </label>
   
         <label>
             Catagory
-            <select id="catagory">
+            <select id="catagory-expense">
                 <option value="food">Food</option>
                 <option value="transport">Transport</option>
                 <option value="other">Other</option>
@@ -31,11 +35,41 @@
         </label>
         <label>
             Note:
-            <input type="text" placeholder="Details..." id="note" />
+            <input type="text" placeholder="Details..." id="note-expense" />
         </label>
 
-        <button type="submit">Submit</button>
+        <button type="submit" id="submit-expense">Submit</button>
       </form>
   </div>
+  <div id="center-box-income">
+    <form class="input-row" id="entry-form-income">
+        <label>
+            Date:
+            <input type="date" id="date-income" />
+        </label>
+
+        <label>
+          Amount $
+          <input type="number" step="0.01" id="amount-income" />
+        </label>
+  
+        <label>
+            Catagory
+            <select id="catagory-income">
+                <option value="food">Food</option>
+                <option value="transport">Transport</option>
+                <option value="other">Other</option>
+              </select>
+        </label>
+        <label>
+            Note:
+            <input type="text" placeholder="Details..." id="note-income" />
+        </label>
+
+        <button type="submit" id="submit-income">Submit</button>
+      </form>
+  </div>
+</div>
+</div>
 </body>
 </html>

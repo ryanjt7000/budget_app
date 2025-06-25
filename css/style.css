@@ -8,12 +8,69 @@ body {
   }
   
   .center-box {
+    display: flex;
+    flex-direction: column;
+    /* gap: 20px; */
     width: 70%;
-    height: 200px;
-    background-color: #f0f0f0;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 250px;
+    /* background-color: #f0f0f0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
     padding: 20px;
     box-sizing: border-box;
+  }
+
+ #center-box-income{
+  display: none;
+  flex-direction: column;
+  align-items: center;    /* horizontal centering */
+  justify-content: center; /* vertical centering */
+  background-color: #77b579;
+  align-items: center;
+  height: 80%;
+  
+
+  }
+
+  #center-box-expense{
+    display:flex;
+    flex-direction: column;
+    align-items: center;    /* horizontal centering */
+    justify-content: center; /* vertical centering */
+    background-color: #cd6e6e;
+    align-items:center;
+    height: 80%;
+
+  }
+
+  .trapezoid-holder{
+    display: flex;
+    flex-direction: row;
+    height: 20%;
+
+  } 
+
+  .trapezoid{
+    width: 50%;
+    height: 40px; /* 30% */
+    background: #4CAF50;
+    text-align: center;
+
+  }
+
+  #trapezoid-expense{
+    
+    background: rgba(236, 6, 6, 0.566);
+    border: red;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+
+  }
+
+  #trapezoid-income{
+
+    background: rgba(12, 219, 12, 0.645);
+    border: green;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+
   }
   
   .input-row {

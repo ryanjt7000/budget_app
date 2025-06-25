@@ -60,8 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Handle new entry
-    elseif ($data['type'] === 'entry') {
-        if (!isset($data['userId'], $data['date'], $data['amount'], $data['category'])) {
+    elseif ($data['post_type'] === 'entry') {
+        if (!isset($data['userId'], $data['date'], $data['type'], $data['amount'], $data['category'])) {
             http_response_code(400);
             echo json_encode(['status' => 'error', 'error' => 'Missing required entry fields']);
             exit;
@@ -82,9 +82,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $entry_id = $stmt->execute()->fetchArray(SQLITE3_ASSOC)['new_id'];
 
         // Insert entry
-        $stmt = $db->prepare('INSERT INTO entries (user_id, entry_id, amount, category, note) VALUES (:user_id, :entry_id, :amount, :category, :note)');
+        $stmt = $db->prepare('INSERT INTO entries (user_id, entry_id, type, amount, category, note) VALUES (:user_id, :entry_id, :type, :amount, :category, :note)');
         $stmt->bindValue(':user_id', $data['userId'], SQLITE3_INTEGER);
         $stmt->bindValue(':entry_id', $entry_id, SQLITE3_INTEGER);
+        $stmt->bindValue(':type', $data['type'], SQLITE3_TEXT);
         $stmt->bindValue(':amount', $amount, SQLITE3_FLOAT);
         $stmt->bindValue(':category', $data['category'], SQLITE3_TEXT);
         $stmt->bindValue(':note', $data['note'] ?? '', SQLITE3_TEXT);
